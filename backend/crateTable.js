@@ -8,3 +8,4 @@ await sql `
         password TEXT NOT NULL
     );
 `
+

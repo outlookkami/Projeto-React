@@ -1,0 +1,4 @@
+Terminal command prompt:
+cd backend
+npm init -y
+npm install @fastify/cors cors fastify @neondatabase/serverless backend bcrypt express json-server jsonwebtoken node postgres
