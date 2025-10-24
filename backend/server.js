@@ -14,6 +14,7 @@ app.use(express.json());
 
 const database = new DatabasePostgres();
 
+// Cadastro
 app.post('/auth/register', async(req, res) => {
     const {name, email, password} = req.body;
     if(!name || !email || !password){
@@ -29,6 +30,7 @@ app.post('/auth/register', async(req, res) => {
     res.status(201).json({msg: 'Usuário criado!'});
 });
 
+// Login
 app.post('/auth/login', async(req, res) => {
     const {email, password} = req.body;
     if(!email || !password){
@@ -57,6 +59,7 @@ app.post('/auth/login', async(req, res) => {
     });
 });
 
+// Teste de rota protegida
 app.get('/protected', (req, res) => {
     const authHeader = req.headers.authorization;
     if(!authHeader) return res.status(401).json({ msg: 'Token não fornecido!'});
@@ -76,7 +79,7 @@ app.get('/users', async(req, res) => {
     res.json(users);
 });
 
-//POST /
+//POST /users
 app.post('/users', async(req, res) => {
     const { name, email, password } = req.body;
     if(!name || !email || !password){
@@ -86,7 +89,7 @@ app.post('/users', async(req, res) => {
     res.status(201).send();
 });
 
-//PUT /users
+//PUT /users:id
 app.put('/users/:id', async(req, res) => {
     const id = req.params.id;
     const user = req.body;
@@ -94,6 +97,7 @@ app.put('/users/:id', async(req, res) => {
     res.status(204).send();
 });
 
+// DELETE /users:id
 app.delete('/users/:id', async(req, res) => {
     const id = req.params.id;
     await database.delete(id);
