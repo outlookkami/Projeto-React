@@ -73,14 +73,18 @@ function App(){
                 }
               />
 
-              <Route
-                
-              />
+              <Route path="*" element={<Navigate to="/login" replace/>} />
 
             </Routes>
           </main>
+
+          <PrivateRoute>
+            <Footer></Footer>
+          </PrivateRoute>
         </div>
       </Router>
     </AuthProvider>
-  )
+  );
 }
+
+export default App;
